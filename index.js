@@ -4,6 +4,8 @@ const Manager= require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
 
+const team= [];
+
 const ManagerQs= () =>{
     return inquirer.prompt([
         {
@@ -30,7 +32,7 @@ const ManagerQs= () =>{
 };
 
 const EngineerQs= () =>{
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -51,11 +53,16 @@ const EngineerQs= () =>{
             name: 'username',
             message: 'Type in github username: '
         }
-    ]);
+    ]).then((replies)=>{
+        const engineer= new Engineer(replies.name, replies.id, replies.email, replies.username);
+        team.push(engineer);
+        console.log(team);
+        leaderChoice();
+    })
 };
 
 const InternQs= () =>{
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -76,7 +83,33 @@ const InternQs= () =>{
             name: 'school',
             message: 'Type in school name: '
         }
-    ]);
+    ]).then((replies)=>{
+        const intern= new Intern(replies.name, replies.id, replies.email, replies.school);
+        team.push(intern);
+        console.log(team);
+        leaderChoice();
+    })
+};
+
+const leaderChoice= ()=>{
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'employee',
+            message: 'Would you like to hire an Engineer or Intern or finish building your team?',
+            choices: ['Engineer', 'Intern', 'Finish']
+        }
+    ]).then((decision)=>{
+        if(decision.employee==='Engineer'){
+            EngineerQs();
+        }
+        else if(decision.employee==='Intern'){
+            InternQs();
+        }
+        else{
+            createCard(team);
+        }
+    })
 };
 
 function createHTMLfile(){
@@ -84,31 +117,12 @@ function createHTMLfile(){
 }
 
 function startApp(){
-    console.log(ManagerQs());
+    //console.log(ManagerQs());
     ManagerQs().then((replies)=>{
         const manager= new Manager(replies.name, replies.id, replies.email, replies.office);
-        //for createCard
-        inquirer.prompt([
-            {
-                type: 'list',
-                name: 'employee',
-                message: 'Would to hire an Engineer or Intern?',
-                choices: ['Engineer', 'Intern']
-            }
-        ]).then((choiceE)=>{
-            if(choiceE == 'Engineer'){
-                EngineerQs().then((replies)=>{
-                    const engineer= new Engineer(replies.name, replies.id, replies.email, replies.username);
-                    //for createCard
-                });
-            }
-            else{
-                InternQs().then((replies)=>{
-                    const intern= new Intern(replies.name, replies.id, replies.email, replies.school);
-                    //for createCard
-                });
-            }
-        })
+        team.push(manager);
+        console.log(team);
+        leaderChoice();
     });
 }
 

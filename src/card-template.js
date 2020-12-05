@@ -14,7 +14,7 @@ const generateManager= manager=>{
             </div>
         </div>
     `;
-}
+};
 
 const generateEngineer= engineer=>{
     if(engineer===null){
@@ -62,7 +62,7 @@ const generateIntern= intern=>{
     }
 };
 
-module.exports= ()=>{
+module.exports= (cardData)=>{
     return `<!DOCTYPE html> <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -72,6 +72,9 @@ module.exports= ()=>{
     </head>
     <body>
         <div id="title_banner">My Team</div>
+        ${generateManager(cardData.Manager)}
+        ${generateEngineer(cardData.Engineer)}
+        ${generateIntern(cardData.Intern)}
     </body>
     </html>`;
 }
