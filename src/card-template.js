@@ -2,67 +2,68 @@ const generateManager= manager=>{
     return `
         <div class="card">
             <div class="cardHeader">
-                <h2>Name</h2>
-                <h3>Role</h3>
+                <h2>${manager.name}</h2>
+                <h3>${manager.getRole()}</h3>
             </div>
             <div class="info">
                 <ul>
-                    <li>ID: </li>
-                    <li>Email: </li>
-                    <li>Office number: </li>
+                    <li>ID: ${manager.id}</li>
+                    <li>Email: ${manager.email}</li>
+                    <li>Office number: ${manager.phone}</li>
                 </ul>
             </div>
-        </div>
-    `;
+        </div>`;
 };
 
 const generateEngineer= engineer=>{
-    if(engineer===null){
-        return '';
-    }
-    else{
-        return `
-        <div class="card">
-            <div class="cardHeader">
-                <h2>Name</h2>
-                <h3>Role</h3>
-            </div>
-            <div class="info">
-                <ul>
-                    <li>ID: </li>
-                    <li>Email: </li>
-                    <li>Github: </li>
-                </ul>
-            </div>
+    return `
+    <div class="card">
+        <div class="cardHeader">
+            <h2>${engineer.name}</h2>
+            <h3>${engineer.getRole()}</h3>
         </div>
-        `;
-    }
+        <div class="info">
+            <ul>
+                <li>ID: ${engineer.id}</li>
+                <li>Email: ${engineer.email}</li>
+                <li>Github: ${engineer.getGithub()}</li>
+            </ul>
+        </div>
+    </div>`;
 };
 
 const generateIntern= intern=>{
-    if(intern===null){
-        return '';
-    }
-    else{
-        return `
-        <div class="card">
-            <div class="cardHeader">
-                <h2>Name</h2>
-                <h3>Role</h3>
-            </div>
-            <div class="info">
-                <ul>
-                    <li>ID: </li>
-                    <li>Email: </li>
-                    <li>School: </li>
-                </ul>
-            </div>
+    return `
+    <div class="card">
+        <div class="cardHeader">
+            <h2>${intern.name}</h2>
+            <h3>${intern.getRole()}</h3>
         </div>
-        `;
-    }
+        <div class="info">
+            <ul>
+                <li>ID: ${intern.id}</li>
+                <li>Email: ${intern.email}</li>
+                <li>School: ${intern.getSchool()}</li>
+            </ul>
+        </div>
+    </div>`;
 };
 
-module.exports= (cardData)=>{
+const displayCards= cardData=>{
+    const htmlcards= [];
+    htmlcards.push(cardData.filter(person=>person.getRole() === 'Manager')
+        .map(manager=>generateManager(manager))
+    );
+    htmlcards.push(cardData.filter(person=>person.getRole() === 'Engineer')
+        .map(engineer=>generateEngineer(engineer)).join('')
+    );
+    htmlcards.push(cardData.filter(person=>person.getRole() === 'Intern')
+        .map(intern=>generateIntern(intern)).join('')
+    );
+    return htmlcards.join('');
+};
+
+module.exports= (team)=>{
     return `<!DOCTYPE html> <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -72,9 +73,7 @@ module.exports= (cardData)=>{
     </head>
     <body>
         <div id="title_banner">My Team</div>
-        ${generateManager(cardData.Manager)}
-        ${generateEngineer(cardData.Engineer)}
-        ${generateIntern(cardData.Intern)}
+        ${displayCards(team)}
     </body>
     </html>`;
 }

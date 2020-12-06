@@ -1,3 +1,4 @@
+const fs = require('fs');
 const inquirer= require('inquirer');
 const createCard= require('./src/card-template.js');
 const Manager= require('./lib/Manager.js');
@@ -56,7 +57,6 @@ const EngineerQs= () =>{
     ]).then((replies)=>{
         const engineer= new Engineer(replies.name, replies.id, replies.email, replies.username);
         team.push(engineer);
-        console.log(team);
         leaderChoice();
     })
 };
@@ -86,7 +86,6 @@ const InternQs= () =>{
     ]).then((replies)=>{
         const intern= new Intern(replies.name, replies.id, replies.email, replies.school);
         team.push(intern);
-        console.log(team);
         leaderChoice();
     })
 };
@@ -107,12 +106,13 @@ const leaderChoice= ()=>{
             InternQs();
         }
         else{
-            createCard(team);
+            const htmlData= createCard(team);
+            fs.writeFileSync('./dist/results.html', htmlData);
         }
     })
 };
 
-function createHTMLfile(){
+function createHTMLfile(fileName, data){
     
 }
 
@@ -121,7 +121,6 @@ function startApp(){
     ManagerQs().then((replies)=>{
         const manager= new Manager(replies.name, replies.id, replies.email, replies.office);
         team.push(manager);
-        console.log(team);
         leaderChoice();
     });
 }
