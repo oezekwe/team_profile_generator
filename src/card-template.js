@@ -8,7 +8,7 @@ const generateManager= manager=>{
             <div class="info">
                 <ul>
                     <li>ID: ${manager.id}</li>
-                    <li>Email: ${manager.email}</li>
+                    <li>Email: <a href="mailto: ${manager.email}">${manager.email}</a></li>
                     <li>Office number: ${manager.phone}</li>
                 </ul>
             </div>
@@ -25,8 +25,9 @@ const generateEngineer= engineer=>{
         <div class="info">
             <ul>
                 <li>ID: ${engineer.id}</li>
-                <li>Email: ${engineer.email}</li>
-                <li>Github: ${engineer.getGithub()}</li>
+                <li>Email: <a href="mailto: ${engineer.email}">${engineer.email}</a></li>
+                <li>Github: <a href="https://github.com/${engineer.getGithub()}"
+                target= "_blank">${engineer.getGithub()}</a></li>
             </ul>
         </div>
     </div>`;
@@ -42,7 +43,7 @@ const generateIntern= intern=>{
         <div class="info">
             <ul>
                 <li>ID: ${intern.id}</li>
-                <li>Email: ${intern.email}</li>
+                <li>Email: <a href="mailto: ${intern.email}">${intern.email}</a></li>
                 <li>School: ${intern.getSchool()}</li>
             </ul>
         </div>
@@ -73,7 +74,9 @@ module.exports= (team)=>{
     </head>
     <body>
         <div id="title_banner">My Team</div>
+        <div class="formatDeck">
         ${displayCards(team)}
+        </div>
     </body>
     </html>`;
 }

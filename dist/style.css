@@ -11,12 +11,20 @@ ul{list-style-type: none;}
     line-height: 90px;
     margin-bottom: 40px;
 }
+.formatDeck{
+    margin-left: 80px;
+}
 .card{
     width: 265px;
-    height: 250px;
+    height: 280px;
     box-shadow: 6px 8px 10px -3px;
+    display: inline-block;
+    margin: 0px 25px 25px 0px;
 }
-.cardHeader{background-color: blue;}
+.cardHeader{
+    background-color: blue;
+    display: flow-root;
+}
 .info{
     margin-top: 45px;
     line-height: 28px;
