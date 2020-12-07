@@ -1,4 +1,4 @@
-# This program will let you create your own team of developer's through the command prompt and then display your team members through a html file.
+# This program will let you create your own team of developer's through the command prompt and then display your team members through a html file stored in your dist folder.
 
 ## Link to repo: https://github.com/oezekwe/team_profile_generator.git
 
