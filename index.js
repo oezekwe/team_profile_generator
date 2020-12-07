@@ -14,7 +14,7 @@ const ManagerQs= () =>{
             name: 'name',
             message: 'What is the manager\'s name: ',
             validate: nameInput=>{
-                if(nameInput){
+                if(isNaN(nameInput)){
                     return true;
                 }
                 else{
@@ -78,7 +78,7 @@ const EngineerQs= () =>{
             name: 'name',
             message: 'What is the engineer\'s name: ',
             validate: nameInput=>{
-                if(nameInput){
+                if(isNaN(nameInput)){
                     return true;
                 }
                 else{
@@ -122,7 +122,7 @@ const EngineerQs= () =>{
             name: 'username',
             message: 'Enter github\'s username: ',
             validate: user=>{
-                if(user){
+                if(isNaN(user)){
                     return true;
                 }
                 else{
@@ -145,7 +145,7 @@ const InternQs= () =>{
             name: 'name',
             message: 'What is the intern\'s name: ',
             validate: nameInput=>{
-                if(nameInput){
+                if(isNaN(nameInput)){
                     return true;
                 }
                 else{
@@ -189,7 +189,7 @@ const InternQs= () =>{
             name: 'school',
             message: 'Enter school\'s name: ',
             validate: value=>{
-                if(value){
+                if(isNaN(value)){
                     return true;
                 }
                 else{
