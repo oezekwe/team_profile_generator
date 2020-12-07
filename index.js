@@ -12,22 +12,61 @@ const ManagerQs= () =>{
         {
             type: 'input',
             name: 'name',
-            message: 'Type in the manager\'s name: '
+            message: 'What is the manager\'s name: ',
+            validate: nameInput=>{
+                if(nameInput){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: 'Type in ID#: '
+            message: 'Enter ID#: ',
+            validate: IDinput=>{
+                var num= parseFloat(IDinput);
+                if(Number.isInteger(num)){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: 'Type in email address: '
+            message: 'Enter email address: ',
+            validate: inputEmail=>{
+                if(inputEmail.includes('@') && (inputEmail.endsWith('.com') || 
+                inputEmail.endsWith('.org') || inputEmail.endsWith('.net'))){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'office',
-            message: 'Type in office number: '
+            message: 'Enter office#: ',
+            validate: phone=>{
+                var num= parseFloat(phone);
+                if(Number.isInteger(num)){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                    return false;
+                }
+            } 
         }
     ]);
 };
@@ -37,22 +76,60 @@ const EngineerQs= () =>{
         {
             type: 'input',
             name: 'name',
-            message: 'Type in the engineer\'s name: '
+            message: 'What is the engineer\'s name: ',
+            validate: nameInput=>{
+                if(nameInput){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: 'Type in ID#: '
+            message: 'Enter ID#: ',
+            validate: IDinput=>{
+                var num= parseFloat(IDinput);
+                if(Number.isInteger(num)){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: 'Type in email address: '
+            message: 'Enter email address: ',
+            validate: inputEmail=>{
+                if(inputEmail.includes('@') && (inputEmail.endsWith('.com') || 
+                inputEmail.endsWith('.org') || inputEmail.endsWith('.net'))){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'username',
-            message: 'Type in github username: '
+            message: 'Enter github\'s username: ',
+            validate: user=>{
+                if(user){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                    return false;
+                }
+            } 
         }
     ]).then((replies)=>{
         const engineer= new Engineer(replies.name, replies.id, replies.email, replies.username);
@@ -66,22 +143,59 @@ const InternQs= () =>{
         {
             type: 'input',
             name: 'name',
-            message: 'Type in the intern\'s name: '
+            message: 'What is the intern\'s name: ',
+            validate: nameInput=>{
+                if(nameInput){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'id',
-            message: 'Type in ID#: '
+            message: 'Enter ID#: ',
+            validate: IDinput=>{
+                var num= parseFloat(IDinput);
+                if(Number.isInteger(num)){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: 'Type in email address: '
+            message: 'Enter email address: ',
+            validate: inputEmail=>{
+                if(inputEmail.includes('@') && (inputEmail.endsWith('.com') || 
+                inputEmail.endsWith('.org') || inputEmail.endsWith('.net'))){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.');
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'school',
-            message: 'Type in school name: '
+            message: 'Enter school\'s name: ',
+            validate: value=>{
+                if(value){
+                    return true;
+                }
+                else{
+                    console.log('\nInvalid input. Please try again.')
+                }
+            }
         }
     ]).then((replies)=>{
         const intern= new Intern(replies.name, replies.id, replies.email, replies.school);
@@ -95,7 +209,7 @@ const leaderChoice= ()=>{
         {
             type: 'list',
             name: 'employee',
-            message: 'Would you like to hire an Engineer or Intern or finish building your team?',
+            message: 'Would you like to hire an Engineer or Intern; or are have you finish building your team?',
             choices: ['Engineer', 'Intern', 'Finish']
         }
     ]).then((decision)=>{
@@ -106,15 +220,10 @@ const leaderChoice= ()=>{
             InternQs();
         }
         else{
-            const htmlData= createCard(team);
-            fs.writeFileSync('./dist/results.html', htmlData);
+            fs.writeFileSync('./dist/results.html', createCard(team));
         }
     })
 };
-
-function createHTMLfile(fileName, data){
-    
-}
 
 function startApp(){
     //console.log(ManagerQs());

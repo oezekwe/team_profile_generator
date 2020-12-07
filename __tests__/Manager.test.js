@@ -22,3 +22,16 @@ test('get type of job role from object', () => {
     
     expect(manager.getRole()).toBe('Manager');
 });
+
+test('checks if email contains @ and ends with .com, .net, or .org', ()=>{
+    const email= 'ozekwe@gmail.com';
+    var state;
+    if(email.includes('@') && (email.endsWith('.com') || 
+    email.endsWith('.org') || email.endsWith('.net'))){
+        state= true;
+    }
+    else{
+        state= false;
+    }
+    expect(state).toBe(true);
+});

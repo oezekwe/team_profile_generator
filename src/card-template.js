@@ -3,7 +3,7 @@ const generateManager= manager=>{
         <div class="card">
             <div class="cardHeader">
                 <h2>${manager.name}</h2>
-                <h3>${manager.getRole()}</h3>
+                <h3><i class="fas fa-mug-hot">&ensp;</i>${manager.getRole()}</h3>
             </div>
             <div class="info">
                 <ul>
@@ -20,7 +20,7 @@ const generateEngineer= engineer=>{
     <div class="card">
         <div class="cardHeader">
             <h2>${engineer.name}</h2>
-            <h3>${engineer.getRole()}</h3>
+            <h3><i class="fas fa-glasses">&ensp;</i>${engineer.getRole()}</h3>
         </div>
         <div class="info">
             <ul>
@@ -38,7 +38,7 @@ const generateIntern= intern=>{
     <div class="card">
         <div class="cardHeader">
             <h2>${intern.name}</h2>
-            <h3>${intern.getRole()}</h3>
+            <h3><i class="fas fa-user-graduate">&ensp;</i>${intern.getRole()}</h3>
         </div>
         <div class="info">
             <ul>
@@ -69,7 +69,8 @@ module.exports= (team)=>{
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title></title>
+        <title>Team Roster</title>
+        <script src="https://kit.fontawesome.com/d2314c2892.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
